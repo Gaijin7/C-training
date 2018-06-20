@@ -47,40 +47,58 @@ namespace WebAddressbookTests
         public void GroupCreationTest()
         {
             OpenHomePage();
-            Login();
+            Login(new AccountData("admin","secret"));
             GroupPage();
-            //init new group creation
-            driver.FindElement(By.Name("new")).Click();
-            // fill group form
-            driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys("nnn");
-            driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys("nnn");
-            driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys("nnn");
-            //submit group creation
-            driver.FindElement(By.Name("submit")).Click();
-            //return groups page
-            driver.FindElement(By.LinkText("group page")).Click();
-            // logaut
+            NewGroupCreation();
+            FillGroupForm(new GroupData("Gai","Mur","Kol"));
+            SubmitGroupCreation();
+            ReturnGroupPage();
+            Logaut();
+        }
+
+        private void Logaut()
+        {
             driver.FindElement(By.LinkText("Logout")).Click();
+        }
+
+        private void ReturnGroupPage()
+        {
+            driver.FindElement(By.LinkText("group page")).Click();
+        }
+
+        private void SubmitGroupCreation()
+        {
+            driver.FindElement(By.Name("submit")).Click();
+        }
+
+        private void FillGroupForm(GroupData group)
+        {
+            driver.FindElement(By.Name("group_name")).Clear();
+            driver.FindElement(By.Name("group_name")).SendKeys(group.Name);
+            driver.FindElement(By.Name("group_header")).Clear();
+            driver.FindElement(By.Name("group_header")).SendKeys(group.Header);
+            driver.FindElement(By.Name("group_footer")).Clear();
+           driver.FindElement(By.Name("group_footer")).SendKeys(group.Footer);
+        }
+
+        private void NewGroupCreation()
+        {
+            driver.FindElement(By.Name("new")).Click();
         }
 
         private void GroupPage()
         {
-            //go to groups page
             driver.FindElement(By.LinkText("groups")).Click();
         }
 
-        private void Login()
+        private void Login(AccountData account)
         {
-            //login
             driver.FindElement(By.Name("user")).Clear();
-            driver.FindElement(By.Name("user")).SendKeys("admin");
+            driver.FindElement(By.Name("user")).SendKeys(account.Username);
             driver.FindElement(By.Name("pass")).Clear();
-            driver.FindElement(By.Name("pass")).SendKeys("secret");
+            driver.FindElement(By.Name("pass")).SendKeys(account.Password);
             driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
-            driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
+            //driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
         }
 
         private void OpenHomePage()
