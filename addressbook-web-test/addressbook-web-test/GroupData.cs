@@ -9,18 +9,18 @@ namespace WebAddressbookTests
     class GroupData
     {
         private string name;
-        private string header = "";
-        private string footer = "";
+        private string header;
+        private string footer;
 
-        public GroupData(string name)
+       // public GroupData(string name)
+       // {
+       //     this.name = name;
+      //  }
+       public GroupData(string name, string header, string footer)
         {
-            this.name = name;
-        }
-        public GroupData(string name, string header, string footer)
-        {
-            this.name = name;
-            this.header = header;
-            this.footer = footer;
+           this.name = name;
+           this.header = header;
+           this.footer = footer;
         }
         public string Name
         {
