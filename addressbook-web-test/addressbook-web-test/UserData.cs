@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AddressbookTests
+namespace WebAddressbookTests 
 {
-    class UserData
-    {
+   public class UserData : TestBase
+{
         private string firstname;
         private string lastname;
         private string nickname;
