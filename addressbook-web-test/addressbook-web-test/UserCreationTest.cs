@@ -16,8 +16,8 @@ namespace WebAddressbookTests
         [Test]
         public void UserCreationTest()
         {
-            GoToHomePage();
-            Login(new AccountData("admin", "secret"));
+            navigator.GoToHomePage();
+            loginHelper.Login(new AccountData("admin", "secret"));
             UserPage();
             UserData user = new UserData("sfghshg");
             user.Lastname = "Mur";
@@ -28,7 +28,7 @@ namespace WebAddressbookTests
             CreationNewUser(user);
             SubmitCreation();
             ReturnUserPage();
-            Logaut();
+            loginHelper.Logaut();
         }
 
     }

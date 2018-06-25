@@ -15,7 +15,10 @@ namespace WebAddressbookTests
         protected IWebDriver driver;
         private StringBuilder verificationErrors;
         protected string baseURL;
-       
+
+        protected LoginHelper loginHelper;
+        protected NavigationHelper navigator;
+
 
         [SetUp]
         public void SetupTest()
@@ -26,6 +29,9 @@ namespace WebAddressbookTests
             driver = new FirefoxDriver(options);
             baseURL = "http://localhost:8080/";
             verificationErrors = new StringBuilder();
+
+            loginHelper = new LoginHelper(driver);
+            navigator = new NavigationHelper(driver,baseURL);
         }
 
         [TearDown]
@@ -41,22 +47,7 @@ namespace WebAddressbookTests
             }
             Assert.AreEqual("", verificationErrors.ToString());
         }
-        protected void GoToHomePage()
-        {
-            driver.Navigate().GoToUrl(baseURL + "addressbook/group.php");
-        }
-        protected void Login(AccountData account)
-        {
-            driver.FindElement(By.Name("user")).Clear();
-            driver.FindElement(By.Name("user")).SendKeys(account.Username);
-            driver.FindElement(By.Name("pass")).Clear();
-            driver.FindElement(By.Name("pass")).SendKeys(account.Password);
-            driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
-        }
-        protected void GoToGroupPage()
-        {
-            driver.FindElement(By.LinkText("groups")).Click();
-        }
+      
 
         protected void NewGroupCreation()
         {
@@ -76,10 +67,7 @@ namespace WebAddressbookTests
         {
             driver.FindElement(By.Name("submit")).Click();
         }
-        protected void Logaut()
-        {
-            driver.FindElement(By.LinkText("Logout")).Click();
-        }
+        
 
         protected void ReturnToGroupsPage()
         {

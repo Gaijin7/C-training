@@ -60,6 +60,8 @@
   <ItemGroup>
     <Compile Include="AccauntData.cs" />
     <Compile Include="GroupData.cs" />
+    <Compile Include="LoginHelper.cs" />
+    <Compile Include="NavigationHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GroupCreationTests.cs" />
     <Compile Include="GroupRemovalTest.cs" />
